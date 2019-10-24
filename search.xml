@@ -1,60 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>cookie & session</title>
+    <title>Hexo中localSearch无法使用及解决办法</title>
+    <url>/2019/10/24/local-search%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[
+<a name="pj9P0"></a>
+## 1.问题描述
+新增一篇文章后，点击搜索按钮后一直卡在转圈圈界面，如下图。<!--more--><br />![image.png](https://cdn.nlark.com/yuque/0/2019/png/414961/1571880015790-41973266-62ee-449a-8d6c-aec8cce65a7a.png#align=left&display=inline&height=341&name=image.png&originHeight=596&originWidth=1088&search=&size=45061&status=done&width=623)<br />                   图1 localSearch无法使用状况图
+<a name="Y9Cn2"></a>
+## 2.解决路线
+首先一套百度，有类似经历的网友指出，出现这种情况要么就是你[local_search配置](#)错误，要么就是你的文章中有特殊字符，导致解析失败。
+<a name="YeGik"></a>
+### 2.1检查配置
+完美无缺。
+<a name="nKTn8"></a>
+### 2.1检查文章
+直接删除文章后编译部署，诶！发现可以用了。可是文章字数那么多，如何确定是哪个位置出现了特殊字符呢？万能的网友指出使用vscode或subline打开你的文章(md文件),可以查看到特殊字符，效果如图2。可是我的文章打开根本看不到任何特殊字符，这可咋整？偶然看到一篇文章说是search.xml报错，如图3,我们可以看到search.xml状态200，但是内容却报错了，提示我们17行26列报错，打开hexo根目录\public\search.xml，定位到17行26列，果不其然，是&符号由md转换到html是否报错，我们直接删除后重新部署，搜索功能就又回来了<br />
+<br />![15145243584788.png](https://cdn.nlark.com/yuque/0/2019/png/414961/1571880780282-d990c219-9169-403d-b971-9d7d12c56055.png#align=left&display=inline&height=387&name=15145243584788.png&originHeight=988&originWidth=1906&search=&size=357565&status=done&width=746)<br />          图2 编辑器显示特殊字图<br />![image.png](https://cdn.nlark.com/yuque/0/2019/png/414961/1571881449691-129d1f48-4246-4846-8cf0-5174962dc703.png#align=left&display=inline&height=156&name=image.png&originHeight=402&originWidth=1917&search=&size=56647&status=done&width=746)                                                                图3 search.xml特殊字符位置图                                                         
+<a name="dcNjF"></a>
+## 3.后记
+虽然问题找到了，也解决了，但不是最优解，这还只是一片文章中有一个特殊字符，但是多篇文章多个特殊字符该如何快速解决，还有待解决。              
+<a name="IlWjl"></a>
+## 参考
+[Hexo博客无法搜索的终极解决方法](https://www.sqlsec.com/2017/12/hexosearch.html)<br />[hexo的local search不能使用](https://segmentfault.com/q/1010000013084615)<br />
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>问题与解决</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cookie和session</title>
     <url>/2019/10/23/Cookie%E4%B8%8ESession/</url>
-    <content><![CDATA[<p><a name="j7hmd"></a></p>
-<h1 id="一：Cookie"><a href="#一：Cookie" class="headerlink" title="一：Cookie"></a>一：Cookie</h1><p>请看好是Cookie不是Rookie.</p>
-<a id="more"></a>
-<p><a name="GaicN"></a></p>
-<h2 id="1-什么是Cookie"><a href="#1-什么是Cookie" class="headerlink" title="1.什么是Cookie?"></a>1.什么是Cookie?</h2><p>cookie是用户通过浏览器访问某个网站是，该网站后台(服务器)返回的一小段文本信息(key:value格式)。<br />我们可以通过打开浏览器的访问工具(快捷键F12)来查看某个网站的cookie信息，如下图。<br /><img src="https://cdn.nlark.com/yuque/0/2019/png/414961/1571821555880-e1d78e24-04ca-4372-84c7-11e68b1dd0a1.png#align=left&display=inline&height=291&name=image.png&originHeight=291&originWidth=1920&search=&size=77960&status=done&width=1920" alt="image.png"><br><a name="Dt5Ip"></a></p>
-<h2 id="2-为什么使用Cookie"><a href="#2-为什么使用Cookie" class="headerlink" title="2.为什么使用Cookie?"></a>2.为什么使用Cookie?</h2><p>因为Http协议是无状态的，也就是每次访问服务器都不知道你是同一个用户在操作，这样当我的操作都需要认证时就显得很麻烦了，需要你每次都提供用户信息。这时候cookie就应运而生，当用户访问某个网站时，该网站除了返回需要显示的内容外，还附带一段身份信息文本(即Cookie),当用户再次访问该网站时，浏览器会自动带上cookie，然后服务器进行验证，以此来辨认用户。<br /><img src="https://cdn.nlark.com/yuque/0/2019/png/414961/1571822260133-152cbf66-f2bb-45a2-8bb8-46a122b80ea1.png#align=left&display=inline&height=253&name=image.png&originHeight=253&originWidth=502&search=&size=30688&status=done&width=502" alt="image.png"><br><a name="QOW3p"></a></p>
-<h2 id="3-如何使用Cookie"><a href="#3-如何使用Cookie" class="headerlink" title="3.如何使用Cookie?"></a>3.如何使用Cookie?</h2><p>这里先介绍一下cookie的属性。</p>
-<table>
-<thead>
-<tr>
-<th align="left">属性项</th>
-<th align="left">属性项介绍</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">NAME=VALUE</td>
-<td align="left">键值对，可以设置要保存的 Key/Value，注意NAME不可重复</td>
-</tr>
-<tr>
-<td align="left">Expires</td>
-<td align="left">过期时间，在设置的某个时间点后该 Cookie 就会失效<br />使用maxAge用来表示该属性，单位为秒。正数表示失效时间，浏览器会持久化到电脑中，负数表示是一个临时，本窗口(含子窗口)有效。0表示立即删除。</td>
-</tr>
-<tr>
-<td align="left">Domain</td>
-<td align="left">生成该 Cookie 的域名，如 domain=”<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a>“。正常情况下一级域名与二级域名是不可共享cookie。比如test1.tab343.com和test2.tab343.com，因为二者的域名不完全相同。如果想要tab343.com名下的二级域名都可以使用该Cookie，需要设置Cookie的domain参数为<strong>.tab343.com</strong>，这样使用test1.tab343.com和test2.tab343.com就能访问同一个cookie<a href="#vQBwa">参考1</a></td>
-</tr>
-<tr>
-<td align="left">Path</td>
-<td align="left">表示cookie所在的目录，asp.net默认为/，就是根目录。在同一个服务器上有目录如下：/test/,/test/cd/,/test/dd/，现设一个cookie1的path为/test/，cookie2的path为/test/cd/，那么test下的所有页面都可以访问到cookie1，而/test/和/test/dd/的子页面不能访问cookie2。这是因为cookie能让其path路径下的页面访问。</td>
-</tr>
-<tr>
-<td align="left">Secure</td>
-<td align="left">如果设置了这个属性，那么只会在 SSH 连接时才会回传该 Cookie</td>
-</tr>
-</tbody></table>
-<p><a name="uQIvT"></a></p>
-<h3 id="3-1tomcat下使用"><a href="#3-1tomcat下使用" class="headerlink" title="3.1tomcat下使用"></a>3.1tomcat下使用</h3><p>既然cookie是服务器返回给浏览器的文本，那么我们首先想到的就是在response对象中操作了。如下</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> </span></span><br><span class="line"><span class="function">    <span class="keyword">throws</span> ServletException, IOException </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">       Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"name"</span>,System.currentTimeMillis()+<span class="string">""</span>);</span><br><span class="line">       <span class="comment">// 设置生命周期为MAX_VALUE</span></span><br><span class="line">       cookie.setMaxAge(Integer.MAX_VALUE);</span><br><span class="line">       resp.addCookie(cookie);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>这是我们可在浏览器的开发工具中查看&lt;br /&gt;![image.png](https://cdn.nlark.com/yuque/0/2019/png/414961/1571824375602-8d581aea-4625-4be2-98c5-820649b5f830.png#align=left&amp;display=inline&amp;height=592&amp;name=image.png&amp;originHeight=592&amp;originWidth=1918&amp;search=&amp;size=129477&amp;status=done&amp;width=1918)</code></pre><p><a name="5Ot5w"></a></p>
-<h3 id="3-2js中使用"><a href="#3-2js中使用" class="headerlink" title="3.2js中使用"></a>3.2js中使用</h3><p><a href="#wGBLI">参考3</a><br><a name="MJWNO"></a></p>
-<h1 id="二-Session"><a href="#二-Session" class="headerlink" title="二:Session"></a>二:Session</h1><p><a name="uZExA"></a></p>
-<h2 id="1-什么是session"><a href="#1-什么是session" class="headerlink" title="1.什么是session"></a>1.什么是session</h2><p>sessionid是一个会话的key，浏览器第一次访问服务器会在服务器端生成一个session，有一sessionid和它对应。tomcat生成的sessionid叫做jsessionid。<br><a name="wM68P"></a></p>
-<h2 id="2-为什么要使用session"><a href="#2-为什么要使用session" class="headerlink" title="2.为什么要使用session"></a>2.为什么要使用session</h2><p>因为cookie不安全，如果cookie被人窃取，带着这个cookie访问网址时就能实现该用户的操作权限。<br><a name="o9qtp"></a></p>
-<h2 id="3-如何使用session"><a href="#3-如何使用session" class="headerlink" title="3.如何使用session"></a>3.如何使用session</h2><p><a name="uAZ0K"></a></p>
-<h3 id="3-1session的属性"><a href="#3-1session的属性" class="headerlink" title="3.1session的属性"></a>3.1session的属性</h3><p> session相比cookie来说存储内容要大的多，这里我们主要关注下它的失效时间的设置,setMaxInactiveInterval(int i)。<br /> <img src="https://cdn.nlark.com/yuque/0/2019/png/414961/1571825540615-18699616-d50d-4d4a-8d85-107b69461a6b.png#align=left&display=inline&height=324&name=image.png&originHeight=324&originWidth=704&search=&size=49296&status=done&width=704" alt="image.png"><br><a name="aZLjA"></a></p>
-<h1 id="三：两者比较"><a href="#三：两者比较" class="headerlink" title="三：两者比较"></a>三：两者比较</h1><ol>
-<li>cookie数据存放在客户的浏览器上，session数据放在服务器上。</li>
-<li>cookie不是很安全，别人可以分析存放在本地的cookie并进行cookie欺骗，考虑到安全应当使用session。</li>
-<li>session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能，考虑到减轻服务器性能             方面，应当使用cookie。</li>
-<li>单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。</li>
-<li>可以考虑将登陆信息等重要信息存放为session，其他信息如果需要保留，可以放在cookie中。<br><a name="3dCEC"></a><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><a name="m1wbO"></a><h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h3><a name="vQBwa"></a><h4 id="1-理解cookie的path和domain属性"><a href="#1-理解cookie的path和domain属性" class="headerlink" title="1.理解cookie的path和domain属性"></a>1.<a href="https://www.cnblogs.com/chris-oil/p/3869803.html" target="_blank" rel="noopener">理解cookie的path和domain属性</a></h4><a name="x3z4I"></a><h4 id="2-深入理解Cookie"><a href="#2-深入理解Cookie" class="headerlink" title="2.深入理解Cookie"></a>2.<a href="https://www.jianshu.com/p/6fc9cea6daa2" target="_blank" rel="noopener">深入理解Cookie</a></h4><a name="wGBLI"></a><h4 id="3-JavaScript-Cookies"><a href="#3-JavaScript-Cookies" class="headerlink" title="3.JavaScript Cookies"></a>3.<a href="https://www.w3school.com.cn/js/js_cookies.asp" target="_blank" rel="noopener">JavaScript Cookies</a></h4><a name="xeKe5"></a><h4 id="4-session在什么时候创建，以及session一致性问题"><a href="#4-session在什么时候创建，以及session一致性问题" class="headerlink" title="4.session在什么时候创建，以及session一致性问题"></a>4.<a href="https://blog.csdn.net/wowwilliam0/article/details/82736074" target="_blank" rel="noopener">session在什么时候创建，以及session一致性问题</a></h4><a name="iwARK"></a><h4 id="5-https-blog-csdn-net-sunhuaqiang1-article-details-88656617"><a href="#5-https-blog-csdn-net-sunhuaqiang1-article-details-88656617" class="headerlink" title="5.https://blog.csdn.net/sunhuaqiang1/article/details/88656617"></a>5.<a href="https://blog.csdn.net/sunhuaqiang1/article/details/88656617" target="_blank" rel="noopener">https://blog.csdn.net/sunhuaqiang1/article/details/88656617</a></h4></li>
-</ol>
+    <content><![CDATA[
+<a name="j7hmd"></a>
+# 一：Cookie
+请看好是Cookie不是Rookie.
+<!--more-->
+<a name="GaicN"></a>
+## 1.什么是Cookie?
+cookie是用户通过浏览器访问某个网站是，该网站后台(服务器)返回的一小段文本信息(key:value格式)。<br />我们可以通过打开浏览器的访问工具(快捷键F12)来查看某个网站的cookie信息，如下图。<br />![image.png](https://cdn.nlark.com/yuque/0/2019/png/414961/1571821555880-e1d78e24-04ca-4372-84c7-11e68b1dd0a1.png#align=left&display=inline&height=291&name=image.png&originHeight=291&originWidth=1920&search=&size=77960&status=done&width=1920)
+<a name="Dt5Ip"></a>
+## 2.为什么使用Cookie?
+因为Http协议是无状态的，也就是每次访问服务器都不知道你是同一个用户在操作，这样当我的操作都需要认证时就显得很麻烦了，需要你每次都提供用户信息。这时候cookie就应运而生，当用户访问某个网站时，该网站除了返回需要显示的内容外，还附带一段身份信息文本(即Cookie),当用户再次访问该网站时，浏览器会自动带上cookie，然后服务器进行验证，以此来辨认用户。<br />![image.png](https://cdn.nlark.com/yuque/0/2019/png/414961/1571822260133-152cbf66-f2bb-45a2-8bb8-46a122b80ea1.png#align=left&display=inline&height=253&name=image.png&originHeight=253&originWidth=502&search=&size=30688&status=done&width=502)
+<a name="QOW3p"></a>
+## 3.如何使用Cookie?
+这里先介绍一下cookie的属性。
+
+| 属性项 | 属性项介绍 |
+| :--- | :--- |
+| NAME=VALUE | 键值对，可以设置要保存的 Key/Value，注意NAME不可重复 |
+| Expires | 过期时间，在设置的某个时间点后该 Cookie 就会失效<br />使用maxAge用来表示该属性，单位为秒。正数表示失效时间，浏览器会持久化到电脑中，负数表示是一个临时，本窗口(含子窗口)有效。0表示立即删除。 |
+| Domain | 生成该 Cookie 的域名，如 domain="[www.baidu.com](http://www.baidu.com)"。正常情况下一级域名与二级域名是不可共享cookie。比如test1.tab343.com和test2.tab343.com，因为二者的域名不完全相同。如果想要tab343.com名下的二级域名都可以使用该Cookie，需要设置Cookie的domain参数为**.tab343.com**，这样使用test1.tab343.com和test2.tab343.com就能访问同一个cookie[参考1](#vQBwa) |
+| Path | 表示cookie所在的目录，asp.net默认为/，就是根目录。在同一个服务器上有目录如下：/test/,/test/cd/,/test/dd/，现设一个cookie1的path为/test/，cookie2的path为/test/cd/，那么test下的所有页面都可以访问到cookie1，而/test/和/test/dd/的子页面不能访问cookie2。这是因为cookie能让其path路径下的页面访问。 |
+| Secure | 如果设置了这个属性，那么只会在 SSH 连接时才会回传该 Cookie |
+
+<a name="uQIvT"></a>
+### 3.1tomcat下使用
+既然cookie是服务器返回给浏览器的文本，那么我们首先想到的就是在response对象中操作了。如下
+```java
+ protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
+     throws ServletException, IOException 
+ {
+        Cookie cookie = new Cookie("name",System.currentTimeMillis()+"");
+        // 设置生命周期为MAX_VALUE
+        cookie.setMaxAge(Integer.MAX_VALUE);
+        resp.addCookie(cookie);
+ }
+```
+? ? ?这是我们可在浏览器的开发工具中查看<br />![image.png](https://cdn.nlark.com/yuque/0/2019/png/414961/1571824375602-8d581aea-4625-4be2-98c5-820649b5f830.png#align=left&display=inline&height=592&name=image.png&originHeight=592&originWidth=1918&search=&size=129477&status=done&width=1918)
+<a name="5Ot5w"></a>
+### 3.2js中使用
+[参考3](#wGBLI)
+<a name="MJWNO"></a>
+# 二:Session
+<a name="uZExA"></a>
+## 1.什么是session
+sessionid是一个会话的key，浏览器第一次访问服务器会在服务器端生成一个session，有一sessionid和它对应。tomcat生成的sessionid叫做jsessionid。
+<a name="wM68P"></a>
+## 2.为什么要使用session
+因为cookie不安全，如果cookie被人窃取，带着这个cookie访问网址时就能实现该用户的操作权限。
+<a name="o9qtp"></a>
+## 3.如何使用session
+<a name="uAZ0K"></a>
+### 3.1session的属性
+?session相比cookie来说存储内容要大的多，这里我们主要关注下它的失效时间的设置,setMaxInactiveInterval(int i)。<br />?![image.png](https://cdn.nlark.com/yuque/0/2019/png/414961/1571825540615-18699616-d50d-4d4a-8d85-107b69461a6b.png#align=left&display=inline&height=324&name=image.png&originHeight=324&originWidth=704&search=&size=49296&status=done&width=704)
+<a name="aZLjA"></a>
+# 三：两者比较
+
+1. cookie数据存放在客户的浏览器上，session数据放在服务器上。
+1. cookie不是很安全，别人可以分析存放在本地的cookie并进行cookie欺骗，考虑到安全应当使用session。
+1. session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能，考虑到减轻服务器性能? ? ? ? ? ? ?方面，应当使用cookie。
+1. 单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。
+1. 可以考虑将登陆信息等重要信息存放为session，其他信息如果需要保留，可以放在cookie中。
+<a name="3dCEC"></a>
+# 参考
+<a name="m1wbO"></a>
+### 参考博客
+<a name="vQBwa"></a>
+#### 1.[理解cookie的path和domain属性](https://www.cnblogs.com/chris-oil/p/3869803.html)
+<a name="x3z4I"></a>
+#### 2.[深入理解Cookie](https://www.jianshu.com/p/6fc9cea6daa2)
+<a name="wGBLI"></a>
+#### 3.[JavaScript Cookies](https://www.w3school.com.cn/js/js_cookies.asp)
+<a name="xeKe5"></a>
+#### 4.[session在什么时候创建，以及session一致性问题](https://blog.csdn.net/wowwilliam0/article/details/82736074)
+<a name="iwARK"></a>
+#### 5.[https://blog.csdn.net/sunhuaqiang1/article/details/88656617](https://blog.csdn.net/sunhuaqiang1/article/details/88656617)
+
 ]]></content>
       <categories>
         <category>HTTP</category>
@@ -67,21 +123,42 @@
   <entry>
     <title>你好 Hexo</title>
     <url>/2019/10/22/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<a id="more"></a>
+    <content><![CDATA[Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
+<!-- more -->
 
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+## Quick Start
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+### Create a new post
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+``` bash
+$ hexo new "My New Post"
+```
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+More info: [Writing](https://hexo.io/docs/writing.html)
 
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+### Run server
+
+``` bash
+$ hexo server
+```
+
+More info: [Server](https://hexo.io/docs/server.html)
+
+### Generate static files
+
+``` bash
+$ hexo generate
+```
+
+More info: [Generating](https://hexo.io/docs/generating.html)
+
+### Deploy to remote sites
+
+``` bash
+$ hexo deploy
+```
+
+More info: [Deployment](https://hexo.io/docs/deployment.html)
 ]]></content>
       <categories>
         <category>Hexo</category>
@@ -89,5 +166,22 @@
       <tags>
         <tag>Hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/about/index.html</url>
+    <content><![CDATA[​                           这里是[SevenSun](https://me.csdn.net/weixin_36758845)的博客，我和[nobt](https://me.csdn.net/zh854663752)、[为何远方](https://me.csdn.net/qq_35992956)一样，会点把子java。
+
+]]></content>
+  </entry>
+  <entry>
+    <title>文章分类</title>
+    <url>/categories/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>tags</title>
+    <url>/tags/index.html</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>

@@ -91,15 +91,16 @@
 <meta name="description" content="一：Cookie请看好是Cookie不是Rookie.">
 <meta name="keywords" content="Session,Cookie">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cookie &amp; session">
+<meta property="og:title" content="cookie和session">
 <meta property="og:url" content="https:&#x2F;&#x2F;tab343.github.io&#x2F;2019&#x2F;10&#x2F;23&#x2F;Cookie%E4%B8%8ESession&#x2F;index.html">
 <meta property="og:site_name" content="SevenSun">
 <meta property="og:description" content="一：Cookie请看好是Cookie不是Rookie.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2019&#x2F;png&#x2F;414961&#x2F;1571821555880-e1d78e24-04ca-4372-84c7-11e68b1dd0a1.png#align=left&amp;display=inline&amp;height=291&amp;name=image.png&amp;originHeight=291&amp;originWidth=1920&amp;search=&amp;size=77960&amp;status=done&amp;width=1920">
 <meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2019&#x2F;png&#x2F;414961&#x2F;1571822260133-152cbf66-f2bb-45a2-8bb8-46a122b80ea1.png#align=left&amp;display=inline&amp;height=253&amp;name=image.png&amp;originHeight=253&amp;originWidth=502&amp;search=&amp;size=30688&amp;status=done&amp;width=502">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2019&#x2F;png&#x2F;414961&#x2F;1571824375602-8d581aea-4625-4be2-98c5-820649b5f830.png#align=left&amp;display=inline&amp;height=592&amp;name=image.png&amp;originHeight=592&amp;originWidth=1918&amp;search=&amp;size=129477&amp;status=done&amp;width=1918">
 <meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2019&#x2F;png&#x2F;414961&#x2F;1571825540615-18699616-d50d-4d4a-8d85-107b69461a6b.png#align=left&amp;display=inline&amp;height=324&amp;name=image.png&amp;originHeight=324&amp;originWidth=704&amp;search=&amp;size=49296&amp;status=done&amp;width=704">
-<meta property="og:updated_time" content="2019-10-23T10:34:40.540Z">
+<meta property="og:updated_time" content="2019-10-24T02:08:13.745Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2019&#x2F;png&#x2F;414961&#x2F;1571821555880-e1d78e24-04ca-4372-84c7-11e68b1dd0a1.png#align=left&amp;display=inline&amp;height=291&amp;name=image.png&amp;originHeight=291&amp;originWidth=1920&amp;search=&amp;size=77960&amp;status=done&amp;width=1920">
 
@@ -111,7 +112,7 @@
     root: '/',
     scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -137,7 +138,7 @@
 
 
 
-  <title>cookie & session | SevenSun</title>
+  <title>cookie和session | SevenSun</title>
   
 
 
@@ -335,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">cookie & session</h1>
+          <h1 class="post-title" itemprop="name headline">cookie和session</h1>
         
 
         <div class="post-meta">
@@ -411,7 +412,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1k
                 </span>
               
 
@@ -427,7 +428,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  3
                 </span>
               
             </div>
@@ -486,17 +487,17 @@
 <p><a name="uQIvT"></a></p>
 <h3 id="3-1tomcat下使用"><a href="#3-1tomcat下使用" class="headerlink" title="3.1tomcat下使用"></a>3.1tomcat下使用</h3><p>既然cookie是服务器返回给浏览器的文本，那么我们首先想到的就是在response对象中操作了。如下</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> </span></span><br><span class="line"><span class="function">    <span class="keyword">throws</span> ServletException, IOException </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">       Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"name"</span>,System.currentTimeMillis()+<span class="string">""</span>);</span><br><span class="line">       <span class="comment">// 设置生命周期为MAX_VALUE</span></span><br><span class="line">       cookie.setMaxAge(Integer.MAX_VALUE);</span><br><span class="line">       resp.addCookie(cookie);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>这是我们可在浏览器的开发工具中查看&lt;br /&gt;![image.png](https://cdn.nlark.com/yuque/0/2019/png/414961/1571824375602-8d581aea-4625-4be2-98c5-820649b5f830.png#align=left&amp;display=inline&amp;height=592&amp;name=image.png&amp;originHeight=592&amp;originWidth=1918&amp;search=&amp;size=129477&amp;status=done&amp;width=1918)</code></pre><p><a name="5Ot5w"></a></p>
+<p>? ? ?这是我们可在浏览器的开发工具中查看<br /><img src="https://cdn.nlark.com/yuque/0/2019/png/414961/1571824375602-8d581aea-4625-4be2-98c5-820649b5f830.png#align=left&display=inline&height=592&name=image.png&originHeight=592&originWidth=1918&search=&size=129477&status=done&width=1918" alt="image.png"><br><a name="5Ot5w"></a></p>
 <h3 id="3-2js中使用"><a href="#3-2js中使用" class="headerlink" title="3.2js中使用"></a>3.2js中使用</h3><p><a href="#wGBLI">参考3</a><br><a name="MJWNO"></a></p>
 <h1 id="二-Session"><a href="#二-Session" class="headerlink" title="二:Session"></a>二:Session</h1><p><a name="uZExA"></a></p>
 <h2 id="1-什么是session"><a href="#1-什么是session" class="headerlink" title="1.什么是session"></a>1.什么是session</h2><p>sessionid是一个会话的key，浏览器第一次访问服务器会在服务器端生成一个session，有一sessionid和它对应。tomcat生成的sessionid叫做jsessionid。<br><a name="wM68P"></a></p>
 <h2 id="2-为什么要使用session"><a href="#2-为什么要使用session" class="headerlink" title="2.为什么要使用session"></a>2.为什么要使用session</h2><p>因为cookie不安全，如果cookie被人窃取，带着这个cookie访问网址时就能实现该用户的操作权限。<br><a name="o9qtp"></a></p>
 <h2 id="3-如何使用session"><a href="#3-如何使用session" class="headerlink" title="3.如何使用session"></a>3.如何使用session</h2><p><a name="uAZ0K"></a></p>
-<h3 id="3-1session的属性"><a href="#3-1session的属性" class="headerlink" title="3.1session的属性"></a>3.1session的属性</h3><p> session相比cookie来说存储内容要大的多，这里我们主要关注下它的失效时间的设置,setMaxInactiveInterval(int i)。<br /> <img src="https://cdn.nlark.com/yuque/0/2019/png/414961/1571825540615-18699616-d50d-4d4a-8d85-107b69461a6b.png#align=left&display=inline&height=324&name=image.png&originHeight=324&originWidth=704&search=&size=49296&status=done&width=704" alt="image.png"><br><a name="aZLjA"></a></p>
+<h3 id="3-1session的属性"><a href="#3-1session的属性" class="headerlink" title="3.1session的属性"></a>3.1session的属性</h3><p>?session相比cookie来说存储内容要大的多，这里我们主要关注下它的失效时间的设置,setMaxInactiveInterval(int i)。<br />?<img src="https://cdn.nlark.com/yuque/0/2019/png/414961/1571825540615-18699616-d50d-4d4a-8d85-107b69461a6b.png#align=left&display=inline&height=324&name=image.png&originHeight=324&originWidth=704&search=&size=49296&status=done&width=704" alt="image.png"><br><a name="aZLjA"></a></p>
 <h1 id="三：两者比较"><a href="#三：两者比较" class="headerlink" title="三：两者比较"></a>三：两者比较</h1><ol>
 <li>cookie数据存放在客户的浏览器上，session数据放在服务器上。</li>
 <li>cookie不是很安全，别人可以分析存放在本地的cookie并进行cookie欺骗，考虑到安全应当使用session。</li>
-<li>session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能，考虑到减轻服务器性能             方面，应当使用cookie。</li>
+<li>session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能，考虑到减轻服务器性能? ? ? ? ? ? ?方面，应当使用cookie。</li>
 <li>单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。</li>
 <li>可以考虑将登陆信息等重要信息存放为session，其他信息如果需要保留，可以放在cookie中。<br><a name="3dCEC"></a><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><a name="m1wbO"></a><h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h3><a name="vQBwa"></a><h4 id="1-理解cookie的path和domain属性"><a href="#1-理解cookie的path和domain属性" class="headerlink" title="1.理解cookie的path和domain属性"></a>1.<a href="https://www.cnblogs.com/chris-oil/p/3869803.html" target="_blank" rel="noopener">理解cookie的path和domain属性</a></h4><a name="x3z4I"></a><h4 id="2-深入理解Cookie"><a href="#2-深入理解Cookie" class="headerlink" title="2.深入理解Cookie"></a>2.<a href="https://www.jianshu.com/p/6fc9cea6daa2" target="_blank" rel="noopener">深入理解Cookie</a></h4><a name="wGBLI"></a><h4 id="3-JavaScript-Cookies"><a href="#3-JavaScript-Cookies" class="headerlink" title="3.JavaScript Cookies"></a>3.<a href="https://www.w3school.com.cn/js/js_cookies.asp" target="_blank" rel="noopener">JavaScript Cookies</a></h4><a name="xeKe5"></a><h4 id="4-session在什么时候创建，以及session一致性问题"><a href="#4-session在什么时候创建，以及session一致性问题" class="headerlink" title="4.session在什么时候创建，以及session一致性问题"></a>4.<a href="https://blog.csdn.net/wowwilliam0/article/details/82736074" target="_blank" rel="noopener">session在什么时候创建，以及session一致性问题</a></h4><a name="iwARK"></a><h4 id="5-https-blog-csdn-net-sunhuaqiang1-article-details-88656617"><a href="#5-https-blog-csdn-net-sunhuaqiang1-article-details-88656617" class="headerlink" title="5.https://blog.csdn.net/sunhuaqiang1/article/details/88656617"></a>5.<a href="https://blog.csdn.net/sunhuaqiang1/article/details/88656617" target="_blank" rel="noopener">https://blog.csdn.net/sunhuaqiang1/article/details/88656617</a></h4></li>
 </ol>
@@ -559,7 +560,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://tab343.github.io/2019/10/23/Cookie%E4%B8%8ESession/" title="cookie & session">https://tab343.github.io/2019/10/23/Cookie%E4%B8%8ESession/</a>
+    <a href="https://tab343.github.io/2019/10/23/Cookie%E4%B8%8ESession/" title="cookie和session">https://tab343.github.io/2019/10/23/Cookie%E4%B8%8ESession/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -598,6 +599,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/24/local-search%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" rel="prev" title="Hexo中localSearch无法使用及解决办法">
+                Hexo中localSearch无法使用及解决办法 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -652,6 +657,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 		
       
@@ -686,7 +693,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -708,7 +715,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -812,7 +819,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">1.2k</span>
+    <span title="Site words total count">1.5k</span>
   
   -->
 </div>
@@ -849,6 +856,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
